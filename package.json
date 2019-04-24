@@ -1,0 +1,10 @@
+{
+  "name": "listdiff",
+  "version": "1.0.0",
+  "keywords": ["list", "diff", "arrays"],
+  "main": "index.js",
+  "author": "Peter Squicciarini <stripedpajamas273@gmail.com>",
+  "scripts": {
+    "test": "node index.test.js"
+  }
+}
