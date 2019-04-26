@@ -30,7 +30,20 @@ const testSet = [
 ]
 
 for (let test of testSet) {
-  assert.deepStrictEqual(diff(test.a, test.b), test.expected)
+  const want = test.expected
+  const got = diff(test.a, test.b)
+  const error = `\nwanted: ${want}\ngot ${got};\ninputs:\n\ta: ${test.a}\n\tb: ${test.b}`
+  assert.deepStrictEqual(want, got, error)
 }
+
+// confirm that input arrays are not mutated
+const handler = {
+  set: () => { throw new Error('attempt to modify input array') }
+}
+const a = new Proxy([1, 2, 3], handler)
+const b = new Proxy([3, 2, 1], handler)
+
+diff(a, b)
+
 
 console.log('All tests pass')
